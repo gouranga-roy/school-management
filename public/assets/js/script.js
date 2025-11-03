@@ -233,7 +233,21 @@ Version      : 1.0
 			}
 			return false;
 		}
-	});
+    });
+
+    // Bootstrap Toaster
+    $('.toast').toast('show');
 
 	
 })(jQuery);
+
+
+const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+
+if (toastTrigger) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+  toastTrigger.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}

@@ -70,8 +70,10 @@
 		<script src="{{ asset('assets/js/chart.morris.js') }}"></script>
 		
 		<!-- Custom JS -->
-		<script  src="{{ asset('assets/js/script.js') }}"></script>
-		
+		<script  src="{{ asset('assets/js/script.js') }}"></script>  
+
+        <!-- Add this extra js file -->
+        @stack('scripts')
     </body>
 
 <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:34 GMT -->
