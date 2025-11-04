@@ -24,7 +24,7 @@ class StudentController extends Controller
         $request->validate([
             'name'      => ['required', 'string', 'max:250'],
             'email'     => ['required', 'email', 'unique:students,email'],
-            'phone'     => ['required', 'regex:/^[0-9]{9,11}$/', 'unique:students,phone'],
+            'phone'     => ['required', 'unique:students,phone'],
             'address'   => ['nullable', 'string', 'max:250'],
             'photo'     => ['nullable', 'mimes:jpg,png,jpeg,svg', 'max:1024'],
             'password'  => ['required', 'string', 'min:6', 'confirmed'],
@@ -77,7 +77,7 @@ class StudentController extends Controller
     // Student Login
     public function login(Request $request) {
         // Form Validation
-        $credentials = $request->validate([
+        $login = $request->validate([
             'email'     => ['required'],
             'password'  => ['required', 'string', 'min:6'],
         ], [
@@ -86,7 +86,7 @@ class StudentController extends Controller
         ]);
 
         // Login & Check User
-        if(Auth::guard('student')->attempt($credentials)) {
+        if(Auth::guard('student')->attempt($login)) {
             return redirect()->route('student.dashboard')->with('success', 'Student Login Successfully!');
         }
 

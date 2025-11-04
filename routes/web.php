@@ -30,7 +30,8 @@ Route::get('staff-dashboard', [StaffController::class, 'dashboard'])->name('staf
 // Teacher Controller
 Route::get('teacher-login', [TeacherController::class, 'showLogin'])->name('teacher.login');
 
-Route::get('teacher-register', [TeacherController::class, 'showRegister'])->name('teacher.register');
+Route::get('teacher-register', [TeacherController::class, 'showRegister'])->name('teacher.showRegister');
+Route::post('teacher-register', [TeacherController::class, 'register'])->name('teacher.register');
 
 Route::get('teacher-dashboard', [TeacherController::class, 'dashboard'])->name('teacher.dashboard');
 
