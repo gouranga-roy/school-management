@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
-    // Show Login Form
-    public function showLogin()
-    {
-        return view('teacher.login');
-    }
-
 
     // Show Register Form
     public function showRegister()
@@ -59,7 +54,7 @@ class TeacherController extends Controller
         Teacher::create($data);
 
         // Responser return
-        if($data) {
+        if ($data) {
             return redirect()->route('teacher.dashboard')->with('success', 'Teacher Registration Successfully!');
         } else {
             return redirect()->back()->with('error', 'Registration Faild!');
@@ -67,11 +62,37 @@ class TeacherController extends Controller
     }
 
 
+    // Show Login Form
+    public function showLogin()
+    {
+        return view('teacher.login');
+    }
 
+    // Login
+    public function login(Request $request)
+    {
 
+        // Filed Validation
+        $request->validate(
+            [
+                'email' => ['required'],
+                'password' => ['required', 'string', 'min:6'],
+            ],
+            [
+                'email.required' => 'Email Is Required!',
+                'password.required' => 'Password Is Required!',
+            ]
+        );
 
+        if (Auth::guard('teacher')->attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ])) {
+            return redirect()->route('teacher.dashboard')->with('success', 'Teacher Login Successfully!');
+        }
 
-
+        return back()->with('error', 'Invalid email or password!');
+    }
 
 
 

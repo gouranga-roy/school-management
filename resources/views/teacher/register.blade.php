@@ -128,7 +128,7 @@
         </div>
         <!-- /Social Login -->
 
-        <div class="text-center dont-have">Already have an account? <a href="{{ route('teacher.login') }}">Login</a></div>
+        <div class="text-center dont-have">Already have an account? <a href="{{ route('teacher.showLogin') }}">Login</a></div>
     </div>
 </div>
 

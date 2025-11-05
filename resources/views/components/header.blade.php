@@ -108,21 +108,31 @@
         <!-- User Menu -->
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                <span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor"></span>
+                <span class="user-img">
+                    @if(Auth::guard('student')->check())
+                    <img class="rounded-circle" src="{{ asset('storage/' . Auth::guard('student')->user()->photo) }}" width="31" alt="Ryan Taylor">
+                    @endif
+                </span>
             </a>
             <div class="dropdown-menu">
+                @if(Auth::guard('student')->check())
                 <div class="user-header">
                     <div class="avatar avatar-sm">
-                        <img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+                        <img src="{{ asset('storage/' . Auth::guard('student')->user()->photo) }}" alt="User Image" class="avatar-img rounded-circle">
                     </div>
                     <div class="user-text">
-                        <h6>Ryan Taylor</h6>
-                        <p class="text-muted mb-0">Administrator</p>
+                        <h6>{{ Auth::guard('student')->user()->name }}</h6>
+                        <p class="text-muted mb-0 text-uppercase">{{ Auth::guard('student')->name }}</p>
                     </div>
                 </div>
+                @endif
+                
                 <a class="dropdown-item" href="profile.html">My Profile</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
-                <a class="dropdown-item" href="login.html">Logout</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="dropdown-item" type="submit">Logout</button>
+                </form>
             </div>
         </li>
         <!-- /User Menu -->

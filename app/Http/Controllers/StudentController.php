@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
-
+    
     // Show Register Form
     public function showRegister()
     {
@@ -19,7 +19,7 @@ class StudentController extends Controller
     // Register
     public function register(Request $request)
     {
-
+        
         // Form Validation
         $request->validate([
             'name'      => ['required', 'string', 'max:250'],
@@ -95,10 +95,16 @@ class StudentController extends Controller
 
     }
 
-
     // Show Dashboard
     public function dashboard()
     {
         return view('student.dashboard');
     }
+
+    // Logout
+    // public function logout() {
+    //     Auth::guard('student')->logout();
+
+    //     return redirect()->route('student.login')->with('error', 'User Logout!');
+    // }
 }

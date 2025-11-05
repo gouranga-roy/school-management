@@ -8,13 +8,37 @@
         <h1>Teacher Login</h1>
         <p class="account-subtitle">Access to our dashboard</p>
 
+        @if(session('error'))
+        <div
+            class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000" style="position: fixed; top: 1rem; right: 1rem;">
+            <div class="toast-header">
+                <img src="https://via.placeholder.com/20" class="rounded mr-2" alt="">
+                <strong class="mr-auto text-danger">Error</strong>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{ session('error') }}
+            </div>
+        </div>
+        @endif
+
         <!-- Form -->
-        <form action="https://dreamguys.co.in/demo/doccure/admin/index.html">
+        <form action="{{ route('teacher.login') }}" method="POST">
+            @csrf
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Email">
+                <input class="form-control" type="text" name="email" value="{{ old('email') }}" placeholder="Email">
+                @error('email')
+                <p class="fs-sm- text-danger">{{ $message }}</p>
+                @enderror
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Password">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+                @error('password')
+                <p class="fs-sm- text-danger">{{ $message }}</p>
+                @enderror
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit">Login</button>
@@ -35,7 +59,7 @@
         </div>
         <!-- /Social Login -->
 
-        <div class="text-center dont-have">Don’t have an account? <a href="{{ route('student.register') }}">Register</a></div>
+        <div class="text-center dont-have">Don’t have an account? <a href="{{ route('teacher.showRegister') }}">Register</a></div>
     </div>
 </div>
 @endsection
