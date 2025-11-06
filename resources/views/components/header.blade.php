@@ -111,6 +111,8 @@
                 <span class="user-img">
                     @if(Auth::guard('student')->check())
                     <img class="rounded-circle" src="{{ asset('storage/' . Auth::guard('student')->user()->photo) }}" width="31" alt="Ryan Taylor">
+                    @elseif(Auth::guard('teacher')->check())
+                    <img class="rounded-circle" src="{{ asset('storage/' . Auth::guard('teacher')->user()->photo) }}" width="31" alt="Ryan Taylor">
                     @endif
                 </span>
             </a>
@@ -123,6 +125,16 @@
                     <div class="user-text">
                         <h6>{{ Auth::guard('student')->user()->name }}</h6>
                         <p class="text-muted mb-0 text-uppercase">{{ Auth::guard('student')->name }}</p>
+                    </div>
+                </div>
+                @elseif(Auth::guard('teacher')->check())
+                <div class="user-header">
+                    <div class="avatar avatar-sm">
+                        <img src="{{ asset('storage/' . Auth::guard('teacher')->user()->photo) }}" alt="User Image" class="avatar-img rounded-circle">
+                    </div>
+                    <div class="user-text">
+                        <h6>{{ Auth::guard('teacher')->user()->name }}</h6>
+                        <p class="text-muted mb-0 text-uppercase">{{ Auth::guard('teacher')->name }}</p>
                     </div>
                 </div>
                 @endif

@@ -66,13 +66,10 @@
             </div>
             <div class="form-group">
                 <input class="form-control" type="text" name="address" value="{{ old('address') }}" placeholder="Address">
-                @error('address')
-                <p class="text text-danger fs-small mb-0">{{ $message }}</p>
-                @enderror
             </div>
             <div class="form-group">
                 <input class="form-control" type="text" name="qualification" value="{{ old('qualification') }}" placeholder="Qualification">
-                @error('address')
+                @error('qualification')
                 <p class="text text-danger fs-small mb-0">{{ $message }}</p>
                 @enderror
             </div>
@@ -88,9 +85,6 @@
             </div>
             <div class="form-group">
                 <input class="form-control" type="text" name="experience" value="{{ old('experience') }}" placeholder="Experience">
-                @error('experience')
-                <p class="text text-danger fs-small mb-0">{{ $message }}</p>
-                @enderror
             </div>
             <div class="form-group">
                 <input class="form-control" type="password" name="password" placeholder="Password">
@@ -100,15 +94,9 @@
             </div>
             <div class="form-group">
                 <input class="form-control" name="password_confirmation" type="password" placeholder="Confirm Password">
-                @error('password_confirmation')
-                <p class="text text-danger fs-small mb-0">{{ $message }}</p>
-                @enderror
             </div>
             <div class="form-group">
                 <input class="form-control" type="file" name="photo" accept="image/*">
-                @error('photo')
-                <p class="text text-danger fs-small mb-0">{{ $message }}</p>
-                @enderror
             </div>
             <div class="form-group mb-0">
                 <button class="btn btn-primary btn-block" type="submit">Register</button>

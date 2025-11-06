@@ -31,6 +31,21 @@ class TeacherController extends Controller
             'subject'       => ['required', 'string', 'max:150'],
             'experience'    => ['nullable', 'numeric', 'min:0', 'max:50'],
             'password'      => ['required', 'string', 'min:6', 'confirmed'],
+        ],[
+            'name.required'      => 'Please enter your full name.',
+            'email.required'     => 'An email address is required.',
+            'email.email'        => 'Please enter a valid email address.',
+            'email.unique'       => 'This email address is already registered.',
+            'phone.required'     => 'A phone number is required.',
+            'phone.regex'        => 'Please enter a valid phone number (9–11 digits).',
+            'phone.unique'       => 'This phone number is already in use.',
+            'address.max'        => 'Address must not exceed 250 characters.',
+            'photo.mimes'        => 'Photo must be in JPG, PNG, JPEG, or SVG format.',
+            'photo.max'          => 'Photo size must not exceed 1MB.',
+            'photo.max'          => 'Photo size must not exceed 1MB.',
+            'qualification.required'  => 'Qualification is required.',
+            'password.min'       => 'Password must be at least 6 characters long.',
+            'password.confirmed' => 'Password confirmation does not match.',
         ]);
 
         // Upload photo
