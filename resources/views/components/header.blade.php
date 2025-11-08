@@ -106,6 +106,7 @@
         <!-- /Notifications -->
 
         <!-- User Menu -->
+        @if(Auth::guard('student')->check() || Auth::guard('teacher')->check() || Auth::guard('staff')->check())
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <span class="user-img">
@@ -113,6 +114,8 @@
                     <img class="rounded-circle" src="{{ asset('storage/' . Auth::guard('student')->user()->photo) }}" width="31" alt="Ryan Taylor">
                     @elseif(Auth::guard('teacher')->check())
                     <img class="rounded-circle" src="{{ asset('storage/' . Auth::guard('teacher')->user()->photo) }}" width="31" alt="Ryan Taylor">
+                    @elseif(Auth::guard('staff')->check())
+                    <img class="rounded-circle" src="{{ asset('storage/' . Auth::guard('staff')->user()->photo) }}" width="31" alt="Ryan Taylor">
                     @endif
                 </span>
             </a>
@@ -137,7 +140,17 @@
                         <p class="text-muted mb-0 text-uppercase">{{ Auth::guard('teacher')->name }}</p>
                     </div>
                 </div>
-                @endif
+                @elseif(Auth::guard('staff')->check())
+                <div class="user-header">
+                    <div class="avatar avatar-sm">
+                        <img src="{{ asset('storage/' . Auth::guard('staff')->user()->photo) }}" alt="User Image" class="avatar-img rounded-circle">
+                    </div>
+                    <div class="user-text">
+                        <h6>{{ Auth::guard('staff')->user()->name }}</h6>
+                        <p class="text-muted mb-0 text-uppercase">{{ Auth::guard('staff')->name }}</p>
+                    </div>
+                </div>
+                @endif 
                 
                 <a class="dropdown-item" href="profile.html">My Profile</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
@@ -147,6 +160,7 @@
                 </form>
             </div>
         </li>
+        @endif
         <!-- /User Menu -->
 
     </ul>

@@ -8,19 +8,87 @@
         <h1>Staff Register</h1>
         <p class="account-subtitle">Access to our dashboard</p>
 
+        @if(session('success'))
+        <div
+            class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000" style="position: fixed; top: 1rem; right: 1rem;">
+            <div class="toast-header">
+                <img src="https://via.placeholder.com/20" class="rounded mr-2" alt="">
+                <strong class="mr-auto text-success">Success</strong>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{ session('success') }}
+            </div>
+        </div>
+        @endif
+
+        @if(session('error'))
+        <div
+            class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000" style="position: fixed; top: 1rem; right: 1rem;">
+            <div class="toast-header">
+                <img src="https://via.placeholder.com/20" class="rounded mr-2" alt="">
+                <strong class="mr-auto text-danger">Error</strong>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{ session('error') }}
+            </div>
+        </div>
+        @endif
+
         <!-- Form -->
-        <form action="https://dreamguys.co.in/demo/doccure/admin/login.html">
+        <form action="{{ route('staff.register') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Name">
+                <input class="form-control" type="text" name="name" placeholder="Name">
+                @error('name')
+                    <span class="text-danger text-sm">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Email">
+                <input class="form-control" type="email" name="email" placeholder="Email">
+                @error('email')
+                    <span class="text-danger text-sm">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Password">
+                <input class="form-control" type="text" name="phone" placeholder="Phone">
+                @error('phone')
+                    <span class="text-danger text-sm">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Confirm Password">
+                <input class="form-control" type="text" name="address" placeholder="Address">
+                @error('address')
+                    <span class="text-danger text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="salary" placeholder="Salary">
+                @error('salary')
+                    <span class="text-danger text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+                @error('password')
+                    <span class="text-danger text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password_confirmation" placeholder="Confirm Password">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="file" name="photo" accept="image">
+                @error('photo')
+                    <span class="text-danger text-sm">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group mb-0">
                 <button class="btn btn-primary btn-block" type="submit">Register</button>
@@ -40,7 +108,7 @@
         </div>
         <!-- /Social Login -->
 
-        <div class="text-center dont-have">Already have an account? <a href="{{ route('student.login') }}">Login</a></div>
+        <div class="text-center dont-have">Already have an account? <a href="{{ route('staff.showLogin') }}">Login</a></div>
     </div>
 </div>
 @endsection

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\StaffLogin;
+use App\Http\Middleware\StaffLogout;
 use App\Http\Middleware\StudentLogin;
 use App\Http\Middleware\StudentLogout;
 use App\Http\Middleware\TeacherLogin;
@@ -25,6 +27,10 @@ return Application::configure(basePath: dirname(__DIR__))
             // Teacher Middleware
             'techerLogin' => TeacherLogin::class,
             'teacherLogout' => TeacherLogout::class,
+
+            // Staff Middlware
+            'staffLogin' => StaffLogin::class,
+            'staffLogout' => StaffLogout::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Staff;
 use App\Models\Student;
 use App\Models\Teacher;
 
@@ -50,6 +51,10 @@ return [
         'teacher' => [
             'driver' => 'session',
             'provider' => 'teachers'
+        ],
+        'staff' => [
+            'driver' => 'session',
+            'provider' => 'staff'
         ]
     ],
 
@@ -82,6 +87,10 @@ return [
         'teachers' => [
             'driver' => 'eloquent',
             'model'  => Teacher::class
+        ],
+        'staff' => [
+            'driver' => 'eloquent',
+            'model' => Staff::class,
         ]
     ],
 

@@ -23,12 +23,6 @@ Route::post('student-register', [StudentController::class, 'register'])->name('s
 
 Route::get('student-dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard')->middleware('stuLogout');
 
-// Staff Controller
-Route::get('staff-login', [StaffController::class, 'showLogin'])->name('staff.showLogin');
-
-Route::get('staff-register', [StaffController::class, 'showRegister'])->name('staff.register');
-
-Route::get('staff-dashboard', [StaffController::class, 'dashboard'])->name('staff.dashboard');
 
 // Teacher Controller
 Route::get('teacher-login', [TeacherController::class, 'showLogin'])->name('teacher.showLogin')->middleware('techerLogin');
@@ -38,6 +32,16 @@ Route::get('teacher-register', [TeacherController::class, 'showRegister'])->name
 Route::post('teacher-register', [TeacherController::class, 'register'])->name('teacher.register');
 
 Route::get('teacher-dashboard', [TeacherController::class, 'dashboard'])->name('teacher.dashboard')->middleware('teacherLogout');
+
+
+// Staff Controller
+Route::get('staff-login', [StaffController::class, 'showLogin'])->name('staff.showLogin')->middleware('staffLogin');
+Route::post('staff-login', [StaffController::class, 'login'])->name('staff.login');
+
+Route::get('staff-register', [StaffController::class, 'showRegister'])->name('staff.showRegister')->middleware('staffLogin');
+Route::post('staff-register', [StaffController::class, 'register'])->name('staff.register');
+
+Route::get('staff-dashboard', [StaffController::class, 'dashboard'])->name('staff.dashboard')->middleware('staffLogout');
 
 // Logout for all user 
 
